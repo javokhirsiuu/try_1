@@ -126,53 +126,24 @@
 # fruits.extend(cars)
 
 
-class Buyer:
-    def __init__(self, money, name):
-        self.money = money
-        self.name = name
-        self.basket = []
-        self.purchased = []
-
-    def buy_item(self, product):
-        self.basket.append(product)
-
-    def info_basket(self):
-        print('В корзине сейчас:')
-        print(*self.basket)
-
-    def info_purchased(self):
-        print('В списке сейчас:')
-        print(*self.purchased)
-
-    def info_money(self):
-        print(f'осталось {self.money} монет')
-
-    def __str__(self):
-        return f'покупатель {self.name}, денег в кармане - {self.money}'
 
 
-class Produkt:
-    def __init__(self, name, price):
-        self.name = name
-        self.price = price
+import csv
 
-    def __str__(self):
-        return f'{self.name} - {self.price}'
+data = [
+    ['Name', 'Age', 'City'],
+    ['John', '253', 'New York'],
+    ['Jane', '302', 'London'],
+    ['Bob', '352', 'Pariss']
+]
 
+filename = 'data.csv'
 
-buyer = Buyer(100, 'Tse1ts')
-print(buyer)
-for name, price in (('КНИГА', 25), ('ИГРУШКА', 70), ('КАНЦ. ТОВАР', 30)):
-    buyer.purchased.append(Produkt(name, price))
-buyer.info_purchased()
+# Open the file in write mode
+with open(filename, 'w', newline='') as file:
+    writer = csv.writer(file)
 
-for product in buyer.purchased:
-    if buyer.money > product.price:
-        print(f' куплен товар - {product.name}')
-        buyer.buy_item(product)
-        buyer.money -= product.price
-    else:
-        print(f'недостаточно средств на товар - {product.name}')
-        buyer.info_money()
+    # Write the data to the CSV file
+    writer.writerows(data)
 
-buyer.info_basket()
+print(f'Data saved to {filename} successfully.')

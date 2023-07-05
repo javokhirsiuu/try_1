@@ -1,9 +1,7 @@
 import re
 import csv
 
-login = 123123
-name = "Botir"
-money = 700
+
 with open("a.csv", "w", encoding="utf-8") as file:
     writer = csv.writer(file, delimiter=",")
     writer.writerow([login,name])
